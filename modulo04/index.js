@@ -22,18 +22,24 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.render("index")
+    Pergunta.findAll({raw: true}).then(perguntas => {
+        res.render("index")
+    })
+
+    
 });
 
 app.get("/perguntar", (req, res) => {
-    res.render("perguntar")
+    res.render("perguntar", {
+        perguntas: perguntas
+    })
 });
 
 app.post("/salvarpergunta", (req, res) => {
 
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    
+
     Pergunta.create({
         titulo: titulo,
         descricao: descricao
