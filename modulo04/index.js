@@ -23,7 +23,9 @@ app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
     Pergunta.findAll({raw: true}).then(perguntas => {
-        res.render("index")
+        res.render("index", {
+            perguntas: perguntas
+        }) 
     })
 
     
@@ -31,7 +33,7 @@ app.get("/", (req, res) => {
 
 app.get("/perguntar", (req, res) => {
     res.render("perguntar", {
-        perguntas: perguntas
+        
     })
 });
 
