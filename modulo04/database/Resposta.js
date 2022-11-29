@@ -15,4 +15,4 @@ const Resposta = connection.define("respostas", {
 
 Resposta.sync({force: false})
 
-Module.exports = Resposta
+module.exports = Resposta
